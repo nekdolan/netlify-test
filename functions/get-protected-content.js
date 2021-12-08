@@ -20,10 +20,10 @@ exports.handler = async (event, context) => {
     //         }),
     //     };
     // }
-    console.log(user)
+    // console.log(user)
 
     return {
         statusCode: 200,
-        body: JSON.stringify(user),
+        body: JSON.stringify({ok: 1}),
     };
 }

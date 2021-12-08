@@ -48,7 +48,7 @@ const handleUserStateChange = (user) => {
 };
 
 const loadSubscriptionContent = async (user) => {
-    const body = {}
+    const body = { send: 1 }
     const token = user ? await netlifyIdentity.currentUser().jwt(true) : false;
     const data = await fetch('/.netlify/functions/get-protected-content', {
         method: 'POST',
