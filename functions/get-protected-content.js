@@ -1,9 +1,16 @@
 // {
-//   exp: 1638992352,
-//   sub: '7efdb22c-7747-4fbc-acc2-1de3eb09ce7b',
-//   email: 'trinimac@protonmail.com',
-//   app_metadata: { provider: 'email' },
-//   user_metadata: { full_name: 'Daniel' }
+//   "exp": 1639162246,
+//   "sub": "7efdb22c-7747-4fbc-acc2-1de3eb09ce7b",
+//   "email": "trinimac@protonmail.com",
+//   "app_metadata": {
+//     "provider": "email",
+//     "roles": [
+//       "pro"
+//     ]
+//   },
+//   "user_metadata": {
+//     "full_name": "Daniel"
+//   }
 // }
 
 exports.handler = async (event, context) => {
