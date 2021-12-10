@@ -29,6 +29,12 @@ exports.handler = async (event, context) => {
     // }
     // console.log(user)
 
+    if (!user) {
+        return {
+            statusCode: 404,
+            body: 'no user found',
+        };
+    }
     return {
         statusCode: 200,
         body: JSON.stringify(user),

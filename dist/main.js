@@ -50,6 +50,8 @@ const updateUserInfo = (user) => {
     // add the updated buttons back to the user info div
     container.appendChild(b1);
     container.appendChild(b2);
+
+
 };
 
 const handleUserStateChange = (user) => {
@@ -66,13 +68,19 @@ const loadSubscriptionContent = async (user) => {
             Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(body),
-    }).then(response => response.json())
-    // console.log(data)
-    document.getElementById('output').innerHTML = JSON.stringify(data, null, 2)
+    //    response => response.json()
+    }).then(function (response) {
+        if (!response.ok) {
+            return null
+        }
+        return response.json()
+    })
+    console.log(data)
+    // document.getElementById('output').innerHTML = JSON.stringify(data, null, 2)
 }
 
 netlifyIdentity.on('init', handleUserStateChange);
 netlifyIdentity.on('login', handleUserStateChange);
 netlifyIdentity.on('logout', handleUserStateChange);
 
-document.getElementById('output').innerHTML = out
+// document.getElementById('output').innerHTML = out
