@@ -60,15 +60,39 @@ const handleUserStateChange = (user) => {
 };
 
 const loadSubscriptionContent = async (user) => {
+    // console.log(user)
     const body = { send: 1 }
     const token = user ? await netlifyIdentity.currentUser().jwt(true) : false;
+
+    if (!token) {
+        console.log('no token')
+        return
+    }
+    if (user.app_metadata.roles.length === 0) {
+        const signup = await fetch('/.netlify/functions/signup', {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(body),
+        }).then(function (response) {
+            if (!response.ok) {
+                return null
+            }
+            return response.json()
+        })
+        console.log('/**********/')
+        console.log(signup)
+        console.log('\\**********\\')
+
+    }
+
     const data = await fetch('/.netlify/functions/get-protected-content', {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(body),
-    //    response => response.json()
     }).then(function (response) {
         if (!response.ok) {
             return null
@@ -76,7 +100,6 @@ const loadSubscriptionContent = async (user) => {
         return response.json()
     })
     console.log(data)
-    // document.getElementById('output').innerHTML = JSON.stringify(data, null, 2)
 }
 
 netlifyIdentity.on('init', handleUserStateChange);
