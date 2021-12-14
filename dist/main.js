@@ -1,3 +1,4 @@
+// netlify dev --live
 let out = 'JS ok2'
 
 const button1 = document.getElementById('left');
@@ -68,24 +69,23 @@ const loadSubscriptionContent = async (user) => {
         console.log('no token')
         return
     }
-    if (user.app_metadata.roles.length === 0) {
-        const signup = await fetch('/.netlify/functions/signup', {
-            method: 'POST',
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(body),
-        }).then(function (response) {
-            if (!response.ok) {
-                return null
-            }
-            return response.json()
-        })
-        console.log('/**********/')
-        console.log(signup)
-        console.log('\\**********\\')
-
-    }
+    // if (user.app_metadata.roles && user.app_metadata.roles.length === 0) {
+    //     const signup = await fetch('/.netlify/functions/signup', {
+    //         method: 'POST',
+    //         headers: {
+    //             Authorization: `Bearer ${token}`,
+    //         },
+    //         body: JSON.stringify(body),
+    //     }).then(function (response) {
+    //         if (!response.ok) {
+    //             return null
+    //         }
+    //         return response.json()
+    //     })
+    //     console.log('/**********/')
+    //     console.log(signup)
+    //     console.log('\\**********\\')
+    // }
 
     const data = await fetch('/.netlify/functions/get-protected-content', {
         method: 'POST',
