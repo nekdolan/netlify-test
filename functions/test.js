@@ -12,6 +12,9 @@ exports.handler = async (data, context, callback) => {
         });
         return {
             statusCode: 200,
+            headers: {
+                'Content-Type': 'text/html',
+            },
             body: content
         };
     } catch (e) {

@@ -105,7 +105,7 @@ const loadSubscriptionContent = async (user) => {
         return response.text()
     })
     const time = (end - start)/1000
-    const size = test.length / 1000 / 1000
+    const size = test ? test.length / 1000 / 1000 : 0
     document.getElementById('output').innerHTML = `Json downloaded: ${!!test}, size ${size} MB, dl time ${time} seconds`
 
     // console.log('******************************')
