@@ -19,9 +19,6 @@ exports.handler = async (data, context, callback) => {
         });
         return {
             statusCode: 200,
-            headers: {
-                'Content-Type': 'text/plain',
-            },
             body: JSON.stringify({content})
         };
     } catch (e) {
