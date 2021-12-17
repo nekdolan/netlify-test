@@ -1,5 +1,6 @@
 // netlify dev --live
 let out = 'JS ok2'
+// https://ecstatic-mccarthy-e13f1b.netlify.app/#confirmation_token=GYc4VyGOH49bzh-3pEq_MQ
 
 const button1 = document.getElementById('left');
 const button2 = document.getElementById('right');
@@ -86,6 +87,30 @@ const loadSubscriptionContent = async (user) => {
     //     console.log(signup)
     //     console.log('\\**********\\')
     // }
+    const start = new Date().getTime()
+    let end
+
+    const test = await fetch('/.netlify/functions/test', {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(body),
+    }).then(function (response) {
+        end = new Date().getTime()
+        if (!response.ok) {
+            return null
+        }
+        // return response.json()
+        return response.text()
+    })
+    const time = (end - start)/1000
+    const size = test.length / 1000 / 1000
+    document.getElementById('output').innerHTML = `Json downloaded: ${!!test}, size ${size} MB, dl time ${time} seconds`
+
+    // console.log('******************************')
+    // console.log(test)
+    // console.log('******************************')
 
     const data = await fetch('/.netlify/functions/get-protected-content', {
         method: 'POST',
