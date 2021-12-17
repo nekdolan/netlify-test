@@ -22,7 +22,7 @@ exports.handler = async (data, context, callback) => {
             headers: {
                 'Content-Type': 'text/plain',
             },
-            body: content
+            body: JSON.stringify({content})
         };
     } catch (e) {
         return {
