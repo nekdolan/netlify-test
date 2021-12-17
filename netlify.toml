@@ -4,5 +4,5 @@
 [dev]
   publish = "dist"
   functions = "functions"
-#[functions]
-  #included_files = ["data/**"]
+[functions]
+  included_files = ["data/**"]

@@ -8,6 +8,7 @@ exports.handler = async (data, context, callback) => {
 
     try {
         const content = await fs.readFile(path.join(__dirname, "data/test.txt"), {
+        // const content = await fs.readFile(path.join("./data/test.txt"), {
             encoding: "utf-8"
         });
         return {
