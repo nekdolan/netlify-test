@@ -7,20 +7,20 @@ const path = require("path");
 exports.handler = async (data, context, callback) => {
 
     try {
-        const content = await fs.readFile(path.join(__dirname, "data/test.json"), {
+        const content = await fs.readFile(path.join(__dirname, "data/test.txt"), {
             encoding: "utf-8"
         });
         return {
             statusCode: 200,
             headers: {
-                'Content-Type': 'text/html',
+                'Content-Type': 'text/plain',
             },
             body: content
         };
     } catch (e) {
         return {
             statusCode: 500,
-            body: e
+            body: JSON.stringify({ error: e })
         };
     }
 
