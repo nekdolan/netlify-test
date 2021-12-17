@@ -27,7 +27,7 @@ exports.handler = async (data, context, callback) => {
     } catch (e) {
         return {
             statusCode: 500,
-            body: e
+            body: {message: e.message}
         };
     }
 
