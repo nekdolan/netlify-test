@@ -4,17 +4,16 @@
 const fs = require("fs").promises;
 const path = require("path");
 
-function getPath(fileName) {
-    return (process.env.LAMBDA_TASK_ROOT)? path.resolve(process.env.LAMBDA_TASK_ROOT, fileName):path.resolve(__dirname, fileName)
-}
+// function getPath(fileName) {
+//     return (process.env.LAMBDA_TASK_ROOT)? path.resolve(process.env.LAMBDA_TASK_ROOT, fileName):path.resolve(__dirname, fileName)
+// }
 
 exports.handler = async (data, context, callback) => {
 // const fileName = "./zipped-function/some-other.js"
 // const resolved = (process.env.LAMBDA_TASK_ROOT)? path.resolve(process.env.LAMBDA_TASK_ROOT, fileName):path.resolve(__dirname, fileName)
     try {
+        const content = await fs.readFile(path.join("./data/test.txt"), {
         // const content = await fs.readFile(path.join(__dirname, "data/test.txt"), {
-        const content = await fs.readFile(getPath("./data/test.txt"), {
-        // const content = await fs.readFile(path.join("./data/test.txt"), {
             encoding: "utf-8"
         });
         return {
